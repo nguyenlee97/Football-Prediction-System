@@ -80,3 +80,234 @@ exports.matchPrediction = function(req, res) {
         //   res.render('match.html', { matchPrediction: results[0] });
         // });
       };
+exports.matchfixture = function(req, res) {
+  const matchFixture = [{
+    "match": "AFC Bournemouth VS Luton Town",
+    "date": "16 Dec 2023",
+    "id": 100
+  },
+  {
+    "match": "Arsenal VS Brighton & Hove Albion",
+    "date": "16 Dec 2023",
+    "id": 101
+  },
+  {
+    "match": "Brentford VS Aston Villa",
+    "date": "16 Dec 2023",
+    "id": 102
+  },
+  {
+    "match": "Burnley VS Everton",
+    "date": "16 Dec 2023",
+    "id": 103
+  },
+  {
+    "match": "Chelsea VS Sheffield United",
+    "date": "16 Dec 2023",
+    "id": 104
+  }
+  ]
+  res.send(matchFixture)  
+};
+
+exports.pastmatch = function(req, res) {
+  const pastMatch = [
+    {
+    "match": "Tottenham VS Newcastle",
+    "date": "10 Dec 2023",
+    "result": "4 - 1"
+  },
+  {
+    "match": "Everton VS Chelsea",
+    "date": "10 Dec 2023",
+    "result": "2 - 0"
+  },
+  {
+    "match": "Fulham VS West Ham",
+    "date": "10 Dec 2023",
+    "result": "5 - 0"
+  },
+  {
+    "match": "Luton VS Manchester City",
+    "date": "10 Dec 2023",
+    "result": "1 - 2"
+  },
+  {
+    "match": "Aston Villa VS Arsenal",
+    "date": "10 Dec 2023",
+    "result": "1 - 0"
+  }
+  ]
+  
+  res.send(pastMatch)  
+};
+
+exports.predictMatch = function (req,res) {
+  const { matchId } = req.params
+  const matchPrediction = matchId == 100 ? {
+    homeTeam: "Bournemouth",
+    predictHomeScore: 1,
+    awayTeam: "Luton",
+    predictAwayScore: 1
+  } : {
+    homeTeam: "Arsenal",
+    predictHomeScore: 2,
+    awayTeam: "Brighton",
+    predictAwayScore: 1
+  }
+  res.send(matchPrediction)
+}
+
+exports.historicalStatistic = function (req,res) {
+  const { matchId } = req.params
+  const historicalStatisticResult = matchId == 100 ? [
+    {
+      "statName": "Goal Difference Last Game",
+      "homeTeam" : 0,
+      "awayTeam": -2
+    },
+    {
+      "statName": "Goal Difference 2 Game Prior",
+      "homeTeam" : 2,
+      "awayTeam": -1
+    },
+    {
+      "statName": "Shot On Target Last Game",
+      "homeTeam" : 7,
+      "awayTeam": 6
+    },
+    {
+      "statName": "Shot On Target 2 Game Prior",
+      "homeTeam" : 10,
+      "awayTeam": 2
+    },
+    {
+      "statName": "Full Time Goal Last Game",
+      "homeTeam" : 2,
+      "awayTeam": 1
+    },
+    {
+      "statName": "Full Time Goal 2 Game Prior",
+      "homeTeam" : 2,
+      "awayTeam": 0
+    }
+  ] : [
+    {
+      "statName": "Goal Difference Last Game",
+      "homeTeam" : 1,
+      "awayTeam": -1
+    },
+    {
+      "statName": "Goal Difference 2 Game Prior",
+      "homeTeam" : 2,
+      "awayTeam": 1
+    },
+    {
+      "statName": "Shot On Target Last Game",
+      "homeTeam" : 6,
+      "awayTeam": 6
+    },
+    {
+      "statName": "Shot On Target 2 Game Prior",
+      "homeTeam" : 8,
+      "awayTeam": 3
+    },
+    {
+      "statName": "Full Time Goal Last Game",
+      "homeTeam" : 2,
+      "awayTeam": 3
+    },
+    {
+      "statName": "Full Time Goal 2 Game Prior",
+      "homeTeam" : 3,
+      "awayTeam": 2
+    }
+  ]
+  
+  res.send(historicalStatisticResult)
+}
+
+exports.pastMatchup = function (req,res) {
+  const { matchId } = req.params
+  const pastMatchupResult = matchId == 100 ? [{
+              homeTeam:'Luton',
+              homeScore:'3',
+              awayTeam:'Bournemouth',
+              awayScore:'2',
+              date:'15 Jan 2022',
+  },
+{
+              homeTeam:'Bournemouth',
+              homeScore:'2',
+              awayTeam:'Luton',
+              awayScore:'1',
+              date:'25 Sep 2021',
+},
+{            
+              homeTeam:'Bournemouth',
+              homeScore:'0',
+              awayTeam:'Luton',
+              awayScore:'1',
+              date:'16 Jan 2021',
+},
+{
+              homeTeam:'Luton',
+              homeScore:'0',
+              awayTeam:'Bournemouth',
+              awayScore:'0',
+              date:'19 Dec 2020',
+},
+{
+              homeTeam:'Bournemouth',
+              homeScore:'4',
+              awayTeam:'Luton',
+              awayScore:'0',
+              date:'05 Jan 2020',
+},
+{
+              homeTeam:'Bournemouth',
+              homeScore:'1',
+              awayTeam:'Luton',
+              awayScore:'1',
+              date:'28 Jan 2009',
+},
+  ] : [
+{
+  homeTeam:'Arsenal',
+  homeScore:'0',
+  awayTeam:'Brighton',
+  awayScore:'3',
+  date:'14 May 2023',
+},
+{
+  homeTeam:'Brighton',
+  homeScore:'2',
+  awayTeam:'Arsenal',
+  awayScore:'4',
+  date:'1 Jan 2023',
+},
+{
+  homeTeam:'Arsenal',
+  homeScore:'1',
+  awayTeam:'Brighton',
+  awayScore:'3',
+  date:'10 Nov 2022',
+},
+{
+  homeTeam:'Arsenal',
+  homeScore:'1',
+  awayTeam:'Brighton',
+  awayScore:'2',
+  date:'09 Apr 2022',
+},
+{
+  homeTeam:'Brighton',
+  homeScore:'0',
+  awayTeam:'Arsenal',
+  awayScore:'0',
+  date:'02 Oct 2023',
+},
+];
+  res.send(pastMatchupResult)
+}
+

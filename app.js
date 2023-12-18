@@ -24,6 +24,12 @@ app.configure(function(){
 });
 app.get('/match/:matchId', routes.matchPrediction);
 app.get('/accuracy', routes.accuracy);
+app.get('/matchFixture', routes.matchfixture)
+app.get('/pastMatch', routes.pastmatch)
+app.get('/matchDetail/:matchId', routes.predictMatch)
+app.get('/pastMatchup/:matchId', routes.pastMatchup)
+app.get('/historicalStatistic/:matchId', routes.historicalStatistic)
+
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
   console.log("Listening on " + port);
